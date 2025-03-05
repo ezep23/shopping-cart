@@ -1,15 +1,17 @@
 <script setup>
     import Title from '../components/Title.vue';
     import Products from '../components/Products.vue';
+    import Navbar from '../components/Navbar.vue';
 </script>
 
 <template>
-    <div class="layoutProducts">
-        <div class="containerProducts">
-            <Title />
-            <Products />
-        </div>
-    </div>
+    <div>
+    <Navbar />
+    <Layout>
+      <Title />
+      <Products />
+    </Layout>
+  </div>
 </template>
 
 <style scoped>

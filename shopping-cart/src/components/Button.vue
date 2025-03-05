@@ -1,7 +1,11 @@
+<script setup>
+    import { cartStore } from '../store/products';
+</script>
+
 
 <template>
     <button class="button">
-        {{ ...this.props  }}
+        bocaaa
     </button>
 </template>
 

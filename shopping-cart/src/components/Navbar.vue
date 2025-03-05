@@ -1,18 +1,37 @@
-<script setup>
-  import Logo from './Logo.vue';
-  import Cart from './Cart.vue';
-
-  const { cart, isCartActive, renderCart } = //
+<script>
+  export default {
+  props: {
+    carro: {
+      type: Array,
+      required: true
+    },
+    esCarroVisible: {
+      type: Boolean,
+      required: true
+    },
+    mostrarCarro: {
+      type: Function,
+      required: true
+    }
+  }
+} 
 </script>
 
 <template>
-    <nav class="navbar">
-        <Logo />
-        <Cart 
-            cart={{ cart }} 
-            isCartActive={{ isCartActive }}
-            renderCart={{ renderCart }}
-        />
+    <nav>
+      <div class="navbar">
+        <h1>Carro de Compras</h1>
+        <button @click="mostrarCarro">
+          {{ esCarroVisible ? 'Ocultar Carro' : 'Mostrar Carro' }}
+        </button>
+        <div v-if="esCarroVisible">
+          <ul>
+            <li v-for="producto in productos" :key="producto.name">
+              {{ producto.name }} - Cantidad: {{ producto.cantidad }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 </template>
 

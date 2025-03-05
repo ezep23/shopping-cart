@@ -1,11 +1,16 @@
 <script setup>
-    const { cart } = //
+    import { cartStore } from '../store/products';
+    const store = cartStore();
+    const { cart } = store;
 </script>
 
 <template>
     <div class="details">
         <ul class="ul"> 
-            {{ cart.map(product => <li class="product" key={x.name}><img alt={x.name} src={x.img} width='50' height='32'>{x.name} <span>{x.cantidad}</span></li>) }}
+            <li v-for="product in cart" :key="product.name" class="product">
+                <img :alt="product.name" :src="product.img" width="50" height="32">
+                {{ product.name }} <span>{{ product.cantidad }}</span>
+            </li>
         </ul>
     </div>
 </template>
