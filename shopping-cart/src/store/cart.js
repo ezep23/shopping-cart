@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const cartStore = defineStore('cartStore', {
+export const useCartStore = defineStore('cart', {
   state: () => ({
     products: [
       { name: 'Tomate', price: 1500, img: '/productos/tomate.jpg' },
@@ -12,7 +12,7 @@ export const cartStore = defineStore('cartStore', {
   }),
   actions: {
     addToCart(product) {
-      const cart = this.cart;
+      const cart = state.cart;
       const finded = cart.find(x => x.name === product.name);
       
       if (finded) {
@@ -21,14 +21,14 @@ export const cartStore = defineStore('cartStore', {
             ? { ...x, quantity: x.quantity + 1 }
             : x
         );
-        this.cart = newCart;
+        state.cart = newCart;
       } else {
-        this.cart = [...this.cart, { ...product, quantity: 1 }];
+        state.cart = [...state.cart, { ...product, quantity: 1 }];
       }
     },
     renderCart() {
-      if (this.cart.length > 0) {
-        this.isCartVisible = !this.isCartVisible;
+      if (state.cart.length > 0) {
+        state.isCartVisible = !state.isCartVisible;
       }
     },
   },

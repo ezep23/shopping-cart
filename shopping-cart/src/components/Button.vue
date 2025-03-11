@@ -1,11 +1,13 @@
-<script setup>
-    import { cartStore } from '../store/products';
+<script>
+    export default{
+        name: 'Button'
+    }
 </script>
 
 
 <template>
     <button class="button">
-        bocaaa
+        Agregar al carrito
     </button>
 </template>
 

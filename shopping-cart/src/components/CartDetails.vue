@@ -1,7 +1,12 @@
-<script setup>
-    import { cartStore } from '../store/products';
-    const store = cartStore();
-    const { cart } = store;
+<script>
+
+    export default{
+        name: 'CartDetails',
+        props: {
+            cart: Array,
+            required: true
+        }
+    }
 </script>
 
 <template>

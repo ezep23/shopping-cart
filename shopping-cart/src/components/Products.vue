@@ -1,8 +1,8 @@
 <script setup>
-  import { cartStore } from '../store/products';
+  import { useCartStore } from '../store/cart.js';
   import Product from './Product.vue';
 
-  const store = cartStore();
+  const { store } = useCartStore();
   const { products, addToCart } = store;
 </script>
 

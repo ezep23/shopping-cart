@@ -1,16 +1,25 @@
-
-<script setup>
+<script>
     function getNumber(n){
         if(!n) {return ' '}
         return n > 9 ? '9+' : n
     }
 
-    const { value } = this.props
+    export default {
+        name: 'ModalAlert',
+        props: {
+            quantity: Number
+        },
+        computed: {
+            number(){
+                return getNumber(this.quantity)
+            }
+        }
+    }
 </script>
 
 <template>
     <span class="modal">
-        {{ this.getNumber(value) }}
+        {{ quantity }}
     </span>
 </template>
 

@@ -1,15 +1,28 @@
-<template>
-  <div>
-    <slot></slot>
-  </div>
-</template>
-
 <script>
 export default {
   name: 'Layout'
 }
 </script>
 
+<template>
+  <div class="layout">
+    <div class="container">
+      <slot />
+
+    </div>
+  </div>
+</template>
+
 <style scoped>
-/* Add any styles specific to the Layout component here */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    color: #0A283E;
+  }
+
+  .container{
+    width: '1200px';
+  }
 </style>

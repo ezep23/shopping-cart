@@ -1,21 +1,12 @@
-<script setup>
-  import { defineProps } from 'vue';
-  import { cartStore } from '../store/products';
-  import Buttton from '../components/Button.vue';
+<script>
+  import Button from '../components/Button.vue';
 
-  const props = defineProps({
-    product: {
-      type: Object,
-      required: true
-    },
-    addToCart: {
-      type: Function,
-      required: true
+  export default{
+    name: 'Product',
+    props: {
+      product: Object
     }
-  });
-
-  const store = cartStore();
-  const { product, addToCart} = store
+  }
 </script>
 
 <template>
@@ -23,9 +14,9 @@
         <img class="img" :alt="product.name" :src="product.img">
         <h3>{{ product.name }}</h3>
         <p>{{ product.price }}</p>
-        <Buttton @click="() => addToCart(product)">
-            Agrear al carrito
-        </Buttton>
+        <Button @click="() => addToCart(product)">
+          Agrear al carrito
+        </Button>
     </div>
 </template>
 

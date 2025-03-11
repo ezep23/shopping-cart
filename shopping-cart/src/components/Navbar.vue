@@ -1,15 +1,18 @@
 <script>
+  import Cart from './Cart.vue';
+ 
   export default {
+  name: 'Navbar',
   props: {
-    carro: {
+    cart: {
       type: Array,
       required: true
     },
-    esCarroVisible: {
+    isCartVisible: {
       type: Boolean,
       required: true
     },
-    mostrarCarro: {
+    renderCart: {
       type: Function,
       required: true
     }
@@ -18,21 +21,17 @@
 </script>
 
 <template>
-    <nav>
-      <div class="navbar">
-        <h1>Carro de Compras</h1>
-        <button @click="mostrarCarro">
-          {{ esCarroVisible ? 'Ocultar Carro' : 'Mostrar Carro' }}
-        </button>
-        <div v-if="esCarroVisible">
-          <ul>
-            <li v-for="producto in productos" :key="producto.name">
-              {{ producto.name }} - Cantidad: {{ producto.cantidad }}
-            </li>
-          </ul>
-        </div>
+  <nav>
+    <div class="navbar">
+      <h1>Carro de Compras</h1>
+      <button @click="renderCart">
+        {{ isCartVisible ? 'Ocultar Carro' : 'Mostrar Carro' }}
+      </button>
+      <div v-if="isCartVisible">
+        <Cart :cart="cart" :isCartVisible="isCartVisible" :renderCart="renderCart" />
       </div>
-    </nav>
+    </div>
+  </nav>
 </template>
 
 <style scoped>

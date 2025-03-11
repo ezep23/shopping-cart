@@ -1,60 +1,44 @@
-<script setup>
-  import { reactive } from 'vue'
-  import Navbar from './components/Navbar.vue'
-  import Layout from './components/Layout.vue'
-  import Title from './components/Title.vue'
-  import Productos from './components/Productos.vue'
+<script>
+import { defineComponent } from 'vue';
+import Navbar from './components/Navbar.vue';
+import Layout from './components/Layout.vue';
+import Title from './components/Title.vue';
+import Products from './components/Products.vue';
+import { useCartStore } from './store/cart.js';
 
-  const state = reactive({
-    productos: [
-      [
-        { name: 'Tomate', price: 1500, img: '/productos/tomate.jpg' },
-        { name: 'Arbejas', price: 2500, img: '/productos/arbejas.jpg' },
-        { name: 'Lechuga', price: 500, img: '/productos/lechuga.jpg' },
-      ]
-    ],
-    carro: [],
-    esCarroVisible: false
-  }) 
+export default defineComponent({
+  name: 'App',
+  components: {
+    Navbar,
+    Layout,
+    Title,
+    Products
+  },
+  setup() {
+    const cart = useCartStore();
+    const { state, addToCart, renderCart } = cart;
 
-  const agregarAlCarro = (producto) => {
-    const { carro } = state
-      if(carro.find(item => item.name === producto.name)){
-        const newCarro = carro.map(item => item.name === producto.name
-        ? ({ ...item, cantidad: item.cantidad + 1 })
-        : item)
-        return state.carro.push({carro: newCarro})
-      }
-      return state.carro.push({ carro: state.carro.concat({ ...producto, cantidad: 1 }) })
+    return {
+      state,
+      addToCart,
+      renderCart
+    };
   }
-
-  const mostrarCarro = () => {
-    if(state.carro.length){
-      return 
-    }
-    state.esCarroVisible = !state.esCarroVisible
-    
-  }
+});
 </script>
 
 <template>
   <div>
-    <Navbar 
-      :carro="state.carro" 
-      :esCarroVisible="state.esCarroVisible" 
-      :mostrarCarro="mostrarCarro"/>
+    <Navbar :cart="state.cart" :isCartVisible="state.isCartVisible" :renderCart="renderCart()" />
     <Layout>
-      <Title />
-      <Productos 
-        :agregarAlCarro="agregarAlCarro"
-        :productos="state.productos"
-      />
+      <Title shopName="Tienda" />
+      <Products :addToCart="addToCart" :products="state.products" />
     </Layout>
   </div>
 </template>
 
 <style scoped>
-  *{
-    color: #000;
-  }
+* {
+  color: #000;
+}
 </style>

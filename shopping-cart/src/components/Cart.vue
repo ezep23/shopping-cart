@@ -1,16 +1,33 @@
-<script setup>
-  import { computed } from 'vue';
-  import ModalAlert from './ModalAlert.vue';
-  import CartDetails from './CartDetails.vue';
-  import { cartStore } from '../store/products';
-  import { storeToRefs } from 'pinia';
+<script>
+import ModalAlert from './ModalAlert.vue';
+import CartDetails from './CartDetails.vue';
 
-  const store = cartStore();
-  const { cart, isCartVisible, renderCart } = storeToRefs(store);
-
-  const quantity = computed(() => {
-    return cart.value.reduce((count, el) => count + el.quantity, 0);
-  });
+export default {
+  name: 'Cart',
+  components: {
+    ModalAlert,
+    CartDetails
+  },
+  props: {
+    cart: {
+      type: Array,
+      required: true
+    },
+    isCartVisible: {
+      type: Boolean,
+      required: true
+    },
+    renderCart: {
+      type: Function,
+      required: true
+    }
+  },
+  computed: {
+    quantity() {
+      return this.cart.reduce((count, el) => count + el.quantity, 0);
+    }
+  }
+};
 </script>
 
 <template>
@@ -24,18 +41,18 @@
 </template>
 
 <style scoped>
-  .cart {
-    background-color: #359A2c;
-    color: #fff;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
+.cart {
+  background-color: #359A2c;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-  .modal {
-    position: relative;
-    left: 12px;
-    top: 20px;
-  }
+.modal {
+  position: relative;
+  left: 12px;
+  top: 20px;
+}
 </style>
