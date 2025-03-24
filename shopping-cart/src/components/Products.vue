@@ -1,19 +1,17 @@
 <script setup>
-  import { useCartStore } from '../store/cart.js';
   import Product from './Product.vue';
+  import { useCartStore } from '../store/cart';
 
-  const { store } = useCartStore();
-  const { products, addToCart } = store;
+ const store = useCartStore();
 </script>
 
 <template>
     <div class="products">
         <Product 
-            v-for="product in products"
+            v-for="product in store.products"
             :key="product.name"
             :product="product"
-            :addToCart="addToCart"
-        />
+            :addToCart="store.addToCart"/>
     </div>
 </template>
 

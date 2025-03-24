@@ -3,6 +3,9 @@
  
   export default {
   name: 'Navbar',
+  components: {
+    Cart
+  },
   props: {
     cart: {
       type: Array,

@@ -1,14 +1,11 @@
 <script> 
   export default{
-    name: 'Title',
-    props:{
-      ShopName: String
-    }
+    name: 'TitleComponent',
   }
 </script>
 
 <template>
-  <h1>{{ ShopName }}</h1>
+  <h1>Carrito</h1>
 </template>
 
 <style scoped>

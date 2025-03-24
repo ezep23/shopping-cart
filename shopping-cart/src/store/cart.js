@@ -3,32 +3,30 @@ import { defineStore } from 'pinia';
 export const useCartStore = defineStore('cart', {
   state: () => ({
     products: [
-      { name: 'Tomate', price: 1500, img: '/productos/tomate.jpg' },
-      { name: 'Arbejas', price: 2500, img: '/productos/arbejas.jpg' },
-      { name: 'Lechuga', price: 500, img: '/productos/lechuga.jpg' },
+      { name: 'Tomate', price: 1500, img: '/assets/tomate.jpg' },
+      { name: 'Arbejas', price: 2500, img: '/assets/arbejas.jpg' },
+      { name: 'Lechuga', price: 500, img: '../../../assets/lechuga.jpg' },
     ],
     cart: [],
-    isCartVisible: false,
+    isCartVisible: true,
   }),
   actions: {
     addToCart(product) {
-      const cart = state.cart;
-      const finded = cart.find(x => x.name === product.name);
+      const finded = this.cart.find((item) => item.name === product.name);
       
       if (finded) {
-        const newCart = cart.map(x =>
-          x.name === product.name
-            ? { ...x, quantity: x.quantity + 1 }
-            : x
+        this.cart = this.cart.map((item) =>
+          item.name === product.name
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
-        state.cart = newCart;
       } else {
-        state.cart = [...state.cart, { ...product, quantity: 1 }];
+        this.cart.push({ ...product, quantity: 1 });
       }
     },
     renderCart() {
-      if (state.cart.length > 0) {
-        state.isCartVisible = !state.isCartVisible;
+      if (this.cart.length > 0) {
+        this.isCartVisible = !this.isCartVisible;
       }
     },
   },
