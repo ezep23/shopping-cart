@@ -3,9 +3,9 @@ import { defineStore } from 'pinia';
 export const useCartStore = defineStore('cart', {
   state: () => ({
     products: [
-      { name: 'Tomate', price: 1500, img: '/assets/tomate.jpg' },
-      { name: 'Arbejas', price: 2500, img: '/assets/arbejas.jpg' },
-      { name: 'Lechuga', price: 500, img: '../../../assets/lechuga.jpg' },
+      { name: 'Tomate', description: 'verdura para cocinar', price: 1500, img: '../../assets/tomate.jpg' },
+      { name: 'Arbejas', description: 'legumbre para cocinar', price: 2500, img: './../assets/arbejas.jpg' },
+      { name: 'Lechuga', description: 'verdura para cocinar', price: 500, img: '../assets/lechuga.jpg' },
     ],
     cart: [],
     isCartVisible: true,

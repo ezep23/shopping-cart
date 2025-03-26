@@ -46,6 +46,7 @@
         justify-content: space-between;
         position: relative;
         padding: 0 50px;
-        box-shadow: 0 2px 3px rgb(0,0,0,0.1);
+        background-color: #f7f7f7;
+        box-shadow: 0 2px 2px rgb(0,0,0,0.1);
     }
 </style>

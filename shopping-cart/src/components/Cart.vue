@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .cart {
-  background-color: #359A2c;
+  background-color: #41b883;
   color: #fff;
   border: none;
   padding: 15px;
